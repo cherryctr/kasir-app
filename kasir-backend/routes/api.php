@@ -23,13 +23,16 @@ use App\Http\Controllers\API\AuthController;
 //     // return $request->user();
 // });
 
-// Route::post('/login',[AuthController::class,'login'])->name('login');
-//API route for register new user
 Route::post('/register', [App\Http\Controllers\API\AuthController::class, 'register']);
-//API route for login user
 Route::post('/login', [App\Http\Controllers\API\AuthController::class, 'login']);
-
 Route::post('/create', [App\Http\Controllers\API\MakananController::class, 'create']);
+Route::get('/data', [App\Http\Controllers\API\MakananController::class, 'getData']);
+Route::get('/kategori', [App\Http\Controllers\API\MakananController::class, 'getKategori']);
+
+Route::patch('/data/edit/{id}', [App\Http\Controllers\API\MakananController::class, 'edit']);
+Route::post('/data/update/{id}', [App\Http\Controllers\API\MakananController::class, 'update']);
+Route::delete('/data/delete/{id}', [App\Http\Controllers\API\MakananController::class, 'destroy']);
+
 
 //Protecting Routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
